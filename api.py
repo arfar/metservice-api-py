@@ -1,5 +1,6 @@
 import ghost
 import re
+import sys
 
 # Match numbers and literal '.' (i.e. decimals/floats)
 RE_FLOAT = re.compile('[^0-9.]+')
@@ -25,21 +26,21 @@ def wind_direction_to_string(wind_direction, wind_speed):
     try:
         wind_int = int(wind_direction)
         if wind_int <= 23 or wind_direction >= 337:
-            wind_abbreviations['n']
+            return wind_abbreviations['n']
         elif wind_int < 67:
-            wind_abbreviations['ne']
+            return wind_abbreviations['ne']
         elif wind_int <= 113:
-            wind_abbreviations['e']
+            return wind_abbreviations['e']
         elif wind_int < 167:
-            wind_abbreviations['se']
+            return wind_abbreviations['se']
         elif wind_int <= 203:
-            wind_abbreviations['s']
+            return wind_abbreviations['s']
         elif wind_int < 247:
-            wind_abbreviations['sw']
+            return wind_abbreviations['sw']
         elif wind_int <= 293:
-            wind_abbreviations['w']
+            return wind_abbreviations['w']
         elif wind_int < 337:
-            wind_abbreviations['nw']
+            return wind_abbreviations['nw']
     except ValueError:
         # Stupid javascript and it's silly typing
         if int(wind_speed) >= 0:
@@ -65,7 +66,13 @@ def get_metservice_info(city='christchurch'):
     weather_info = {}
     metservice_url = ''.join(['http://metservice.com/towns-cities/', city])
     gh = ghost.Ghost(wait_timeout=600)
-    gh.open(metservice_url)
+    try:
+        gh.open(metservice_url)
+    except:
+        # FIXME: USUALLY BREAKS TIMEOUT ISSUES,
+        # CAN'T REMEMBER EXACTLY WHAT THE EXCEPTION IS
+        print 'Something went wrong with connecting to metservice'
+        return None
 
     wind_description, _ = gh.evaluate('data.windSpeedDesc')
     weather_info['wind_description'] = str(wind_description)
@@ -89,3 +96,9 @@ def get_metservice_info(city='christchurch'):
     )
     weather_info['pressure'] = float(RE_FLOAT.sub('', str(pressure)))
     return weather_info
+
+
+if __name__ == '__main__':
+    import pprint
+    weather_info = get_metservice_info(sys.argv[1])
+    pprint.pprint(weather_info)
