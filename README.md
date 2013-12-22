@@ -1,5 +1,5 @@
-Minimal Metservice API for Python
-=================================
+Minimal Metservice API in Python
+================================
 
 Wrote this because [Metservice](http://metservice.com) doesn't have an API
 and I wanted to keep track of Christchurch's weather.
