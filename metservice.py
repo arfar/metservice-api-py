@@ -49,7 +49,7 @@ def wind_direction_to_string(wind_direction, wind_speed):
     return 'None'
 
 
-def get_metservice_info(city='christchurch'):
+def get_current_info(city='christchurch'):
     """
     This function returns a dictionary containing current information about
     city/area given. It might be worth double checking the website is correct
@@ -103,5 +103,5 @@ def get_metservice_info(city='christchurch'):
 
 if __name__ == '__main__':
     import pprint
-    weather_info = get_metservice_info(sys.argv[1])
+    weather_info = get_current_info(sys.argv[1])
     pprint.pprint(weather_info)
