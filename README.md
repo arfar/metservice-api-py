@@ -16,8 +16,8 @@ Call the function a receive a dictionary of various weather related items.
 
 or use:
 
-    python api.py christchurch
-    python api.py wellington/western-hills
+    python metservice.py christchurch
+    python metservice.py wellington/western-hills
 
 Contact Me
 ==========
