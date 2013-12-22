@@ -7,7 +7,7 @@ and I wanted to keep track of Christchurch's weather.
 REALLY simple and only gets the current information regarding wind,
 temperature and rainfall. Current means "within the last hour" to metservice.
 
-Just requires [Ghost.py]('http://jeanphix.me/Ghost.py/')
+Just requires [Ghost.py](http://jeanphix.me/Ghost.py/)
 
 Usage
 =====
