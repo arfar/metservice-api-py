@@ -56,11 +56,14 @@ def get_metservice_info(city='christchurch'):
     before using this function.
 
     Example dictionary:
-    {'cur_temp': 12.3,
-     'rainfall': '0.0',
-     'wind_description': 'Moderate',
-     'wind_dir': None,
-     'wind_speed': 20.0}
+    {'cur_temp': 11.4,
+     'humidity': 61.0,
+     'pressure': 1017.0,
+     'rainfall': 0.0,
+     'wind_description': 'Light winds',
+     'wind_dir': 116.0,
+     'wind_dir_str': ('SE', 'Southeast'),
+     'wind_speed': 7.0}
     """
 
     weather_info = {}

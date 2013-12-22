@@ -4,7 +4,7 @@ Minimal Metservice API for Python
 Wrote this because [Metservice](http://metservice.com) doesn't have an API
 and I wanted to keep track of Christchurch's weather.
 
-Currently REALLY simple and only gets the current information regarding wind,
+REALLY simple and only gets the current information regarding wind,
 temperature and rainfall. Current means "within the last hour" to metservice.
 
 Usage
