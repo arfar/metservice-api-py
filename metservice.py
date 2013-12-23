@@ -42,9 +42,10 @@ def wind_direction_to_string(wind_direction, wind_speed):
             return wind_abbreviations['nw']
     except ValueError:
         # Wasn't an integer and should be a string
-        if int(wind_speed) == 0 and wind_direction == 'calm':
+        if int(wind_speed) > 0 and wind_direction == 'calm':
             return wind_abbreviations['n']
-    return wind_abbreviations.get(wind_direction, 'None')
+        return wind_abbreviations.get(wind_direction, 'None')
+    return 'n/a'
 
 
 def get_current_info(city='christchurch'):
