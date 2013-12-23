@@ -1,6 +1,5 @@
 import ghost
 import re
-import sys
 
 # Match numbers and literal '.' (i.e. decimals/floats)
 RE_FLOAT = re.compile('[^0-9.]+')
@@ -8,8 +7,8 @@ RE_FLOAT = re.compile('[^0-9.]+')
 
 def wind_direction_to_string(wind_direction, wind_speed):
     """
-    Attempted to copy the actual javascript. Haven't actually tested it fully
-    Find the javascript here http://metservice.com/_/js/main-3.0.136.js
+    Inspired by the actual javascript.
+    Find it here http://metservice.com/_/js/main-3.0.136.js
     """
     wind_abbreviations = {
         'n': ('N', 'North'),
@@ -42,11 +41,10 @@ def wind_direction_to_string(wind_direction, wind_speed):
         elif wind_int < 337:
             return wind_abbreviations['nw']
     except ValueError:
-        # Stupid javascript and it's silly typing
-        if int(wind_speed) >= 0:
+        # Wasn't an integer and should be a string
+        if int(wind_speed) == 0 and wind_direction == 'calm':
             return wind_abbreviations['n']
-        return wind_abbreviations.get(wind_direction, 'None')
-    return 'None'
+    return wind_abbreviations.get(wind_direction, 'None')
 
 
 def get_current_info(city='christchurch'):
@@ -103,5 +101,6 @@ def get_current_info(city='christchurch'):
 
 if __name__ == '__main__':
     import pprint
+    import sys
     weather_info = get_current_info(sys.argv[1])
     pprint.pprint(weather_info)
