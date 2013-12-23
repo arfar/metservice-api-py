@@ -73,7 +73,6 @@ def get_current_info(city='christchurch'):
     except:
         # FIXME: USUALLY BREAKS TIMEOUT ISSUES,
         # CAN'T REMEMBER EXACTLY WHAT THE EXCEPTION IS
-        print 'Something went wrong with connecting to metservice'
         return None
 
     wind_description, _ = gh.evaluate('data.windSpeedDesc')
