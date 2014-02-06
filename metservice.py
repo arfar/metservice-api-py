@@ -12,7 +12,7 @@ API_OPTIONS = {
     'HOURLY_OBS_AND_FORCAST': 'hourlyObsAndForecast_',
     'LOCAL_OBS': 'localObs_',
     'TIDES': 'tides_',
-    'WARNINGS': 'warningsForRegion3_urban.',
+    'WARNINGS': 'warningsForRegion3_urban.',  # Only works on cities
     'RISE_TIMES': 'riseSet_',
     'POLLEN_LEVELS': 'pollen_town_',
     'DAILY_FORECAST': 'climateDataDailyTown_{0}_32',
@@ -20,7 +20,10 @@ API_OPTIONS = {
 
 
 def get_response(url):
-    response = urllib2.urlopen(url)
+    try:
+        response = urllib2.urlopen(url)
+    except urllib2.HTTPError:
+        return None
     return json.loads(response.read())
 
 if __name__ == '__main__':
@@ -34,4 +37,5 @@ if __name__ == '__main__':
             url = ''.join([METSERVICE_BASE, API_OPTIONS[key].format(city)])
         else:
             url = ''.join([METSERVICE_BASE, API_OPTIONS[key], city])
+        print url
         pprint.pprint(get_response(url))
