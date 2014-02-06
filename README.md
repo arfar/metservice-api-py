@@ -1,23 +1,26 @@
 Minimal Metservice API in Python
 ================================
 
-Wrote this because [Metservice](http://metservice.com) doesn't have an API
-and I wanted to keep track of Christchurch's weather.
-
-REALLY simple and only gets the current information regarding wind,
-temperature and rainfall. Current means "within the last hour" to metservice.
-
-Just requires [Ghost.py](http://jeanphix.me/Ghost.py/)
+Complete rewrite as [issue 1](https://github.com/arfar/metservice-api-py/issues/1)
+completely invalidated what I had done previously. Now the script will simply pull
+the url and convert the JSON to a dictionary. Nothing fancy what-so-ever.
 
 Usage
 =====
 
-Call the function a receive a dictionary of various weather related items.
+Creating the url strings is up to the user, but all the required prefixes and
+suffixes are already there (I'm pretty sure). Use the
+`if __name__ == '__main__':` section as an example of how to construct the
+webpages.
 
-or use:
+If you just want a dump of all the weather related bits, use:
 
     python metservice.py christchurch
-    python metservice.py wellington/western-hills
+    python metservice.py western-hills
+
+Note that not all APIs will work with the smaller areas, for example WARNINGS
+is a region based API and so will not work on western-hills, but will work with
+wellington.
 
 Contact Me
 ==========
